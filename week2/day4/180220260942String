@@ -1,0 +1,17 @@
+#user_string = input ('enter a word')
+
+#letters_dict
+
+# User_name = input ('enter your name')
+
+# greetings={
+#     'sergei' :'privet' 
+#      'Ravite' : 'Hodesh tov'
+
+def say_hello ():
+    # """A function that say hello"""
+    print (""A function that say hello"")
+    
+
+
+

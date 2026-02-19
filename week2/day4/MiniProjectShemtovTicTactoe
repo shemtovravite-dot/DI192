@@ -1,0 +1,95 @@
+# Tic Tac Toe - Beginner Version (No join, no advanced functions)
+
+def display_board(board):
+    print()
+    for i in range(3):
+        print(" " + board[i][0] + " | " + board[i][1] + " | " + board[i][2])
+        if i < 2:
+            print("---+---+---")
+    print()
+
+
+def player_input(board, player):
+    while True:
+        try:
+            row = int(input("Player " + player + ", enter row (0, 1, 2): "))
+            col = int(input("Player " + player + ", enter column (0, 1, 2): "))
+
+            # Check valid range
+            if row < 0 or row > 2 or col < 0 or col > 2:
+                print("Invalid position. Try again.")
+                continue
+
+            # Check if empty
+            if board[row][col] != " ":
+                print("That spot is taken. Try again.")
+                continue
+
+            return row, col
+
+        except ValueError:
+            print("Please enter numbers only.")
+
+
+def check_win(board, player):
+    # Check rows
+    for i in range(3):
+        if board[i][0] == player and board[i][1] == player and board[i][2] == player:
+            return True
+
+    # Check columns
+    for i in range(3):
+        if board[0][i] == player and board[1][i] == player and board[2][i] == player:
+            return True
+
+    # Check diagonals
+    if board[0][0] == player and board[1][1] == player and board[2][2] == player:
+        return True
+
+    if board[0][2] == player and board[1][1] == player and board[2][0] == player:
+        return True
+
+    return False
+
+
+def check_tie(board):
+    for row in board:
+        for cell in row:
+            if cell == " ":
+                return False
+    return True
+
+
+def play():
+    board = [
+        [" ", " ", " "],
+        [" ", " ", " "],
+        [" ", " ", " "]
+    ]
+
+    current_player = "X"
+
+    while True:
+        display_board(board)
+
+        row, col = player_input(board, current_player)
+        board[row][col] = current_player
+
+        if check_win(board, current_player):
+            display_board(board)
+            print("Player " + current_player + " wins!")
+            break
+
+        if check_tie(board):
+            display_board(board)
+            print("It's a tie!")
+            break
+
+        # Switch players
+        if current_player == "X":
+            current_player = "O"
+        else:
+            current_player = "X"
+
+
+play()

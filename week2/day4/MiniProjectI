@@ -1,0 +1,109 @@
+# Tic Tac Toe - Beginner Version (No join, no range)
+
+def display_board(board):
+    print()
+    print(" " + board[0][0] + " | " + board[0][1] + " | " + board[0][2])
+    print("---+---+---")
+    print(" " + board[1][0] + " | " + board[1][1] + " | " + board[1][2])
+    print("---+---+---")
+    print(" " + board[2][0] + " | " + board[2][1] + " | " + board[2][2])
+    print()
+
+
+def player_input(board, player):
+    while True:
+        try:
+            row = int(input("Player " + player + ", enter row (0, 1, 2): "))
+            col = int(input("Player " + player + ", enter column (0, 1, 2): "))
+
+            # Check valid range manually
+            if not (row == 0 or row == 1 or row == 2):
+                print("Invalid row. Try again.")
+                continue
+
+            if not (col == 0 or col == 1 or col == 2):
+                print("Invalid column. Try again.")
+                continue
+
+            # Check if empty
+            if board[row][col] != " ":
+                print("That spot is taken. Try again.")
+                continue
+
+            return row, col
+
+        except ValueError:
+            print("Please enter numbers only.")
+
+
+def check_win(board, player):
+    # Rows
+    if board[0][0] == player and board[0][1] == player and board[0][2] == player:
+        return True
+    if board[1][0] == player and board[1][1] == player and board[1][2] == player:
+        return True
+    if board[2][0] == player and board[2][1] == player and board[2][2] == player:
+        return True
+
+    # Columns
+    if board[0][0] == player and board[1][0] == player and board[2][0] == player:
+        return True
+    if board[0][1] == player and board[1][1] == player and board[2][1] == player:
+        return True
+    if board[0][2] == player and board[1][2] == player and board[2][2] == player:
+        return True
+
+    # Diagonals
+    if board[0][0] == player and board[1][1] == player and board[2][2] == player:
+        return True
+    if board[0][2] == player and board[1][1] == player and board[2][0] == player:
+        return True
+
+    return False
+
+
+def check_tie(board):
+    # Check if any cell is still empty
+    if board[0][0] == " " or board[0][1] == " " or board[0][2] == " ":
+        return False
+    if board[1][0] == " " or board[1][1] == " " or board[1][2] == " ":
+        return False
+    if board[2][0] == " " or board[2][1] == " " or board[2][2] == " ":
+        return False
+
+    return True
+
+
+def play():
+    board = [
+        [" ", " ", " "],
+        [" ", " ", " "],
+        [" ", " ", " "]
+    ]
+
+    current_player = "X"
+
+    while True:
+        display_board(board)
+
+        row, col = player_input(board, current_player)
+        board[row][col] = current_player
+
+        if check_win(board, current_player):
+            display_board(board)
+            print("Player " + current_player + " wins!")
+            break
+
+        if check_tie(board):
+            display_board(board)
+            print("It's a tie!")
+            break
+
+        # Switch players
+        if current_player == "X":
+            current_player = "O"
+        else:
+            current_player = "X"
+
+
+play()
