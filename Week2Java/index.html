@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+    
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+const people = ["Mary", "Greg", "James", "Devon"];
+
+
+const gregIndex = people.indexOf("Greg");
+if (gregIndex !== -1) {
+  people.splice(gregIndex, 1);
+}
+
+const jamesIndex = people.indexOf("James");
+if (jamesIndex !== -1) {
+  people[jamesIndex] = "Jason";
+}
+
+people.push("Ravite Shemtov"); // replace "Ravite Shemtov" with your actual name if needed
+
+
+console.log("Mary's index:", people.indexOf("Mary"));
+
+const copy = people.slice(1, people.length - 1);
+console.log("Copy without Mary and my name:", copy);
+
+console.log("Index of Foo:", people.indexOf("Foo"));
+
+const last = people[people.length - 1];
+console.log("Last element:", last);
+
+    </script>
+</body>
+</html>
