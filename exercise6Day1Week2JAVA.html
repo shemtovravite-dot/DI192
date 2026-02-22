@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+const details = {
+  my: 'name',
+  is: 'Rudolf',
+  the: 'reindeer'
+};
+
+let sentence = "";
+
+for (let key in details) {
+  if (sentence === "") {
+    sentence = details[key];        // first word
+  } else {
+    sentence += " " + details[key]; // add space before next words
+  }
+}
+
+console.log(sentence);
+    </script>
+</body>
+</html>
