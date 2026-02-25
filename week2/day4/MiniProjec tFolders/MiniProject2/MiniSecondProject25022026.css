@@ -46,6 +46,10 @@ h1 {
     background: #f9f9f9;
 }
 
+.drum:hover {
+    background: #e0e0e0;
+}
+
 .drum:active,
 .drum.pressed {
     background: #ffcc00;

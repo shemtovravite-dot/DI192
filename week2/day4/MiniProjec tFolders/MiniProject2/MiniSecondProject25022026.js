@@ -1,48 +1,39 @@
-// Select all drum buttons
-const drumButtons = document.querySelectorAll(".drum");
+// Map each key to a sound file
+const sounds = {
+    q: new Audio("sounds/boom.wav"),
+    w: new Audio("sounds/clap.wav"),
+    e: new Audio("sounds/hihat.wav"),
+    a: new Audio("sounds/kick.wav"),
+    s: new Audio("sounds/openhat.wav"),
+    d: new Audio("sounds/ride.wav"),
+    z: new Audio("sounds/snare.wav"),
+    x: new Audio("sounds/tink.wav"),
+    c: new Audio("sounds/tom.wav")
+};
 
-// Function to play sound based on key
+// Function to play sound
 function playSound(key) {
-    switch(key) {
-        case "w":
-            new Audio("sounds/tom-1.mp3").play();
-            break;
-        case "a":
-            new Audio("sounds/tom-2.mp3").play();
-            break;
-        case "s":
-            new Audio("sounds/tom-3.mp3").play();
-            break;
-        case "d":
-            new Audio("sounds/tom-4.mp3").play();
-            break;
-        case "j":
-            new Audio("sounds/snare.mp3").play();
-            break;
-        case "k":
-            new Audio("sounds/crash.mp3").play();
-            break;
-        case "l":
-            new Audio("sounds/kick-bass.mp3").play();
-            break;
-        default:
-            console.log("Key not mapped:", key);
+    if (sounds[key]) {
+        sounds[key].currentTime = 0; // restart if already playing
+        sounds[key].play();
+    } else {
+        console.log("Key not mapped:", key);
     }
 }
 
 // Function to animate button
 function animateButton(key) {
     const button = document.querySelector(`.drum[data-key="${key}"]`);
-    if(button) {
+    if (button) {
         button.classList.add("pressed");
         setTimeout(() => {
             button.classList.remove("pressed");
-        }, 100);
+        }, 150);
     }
 }
 
-// Mouse click events
-drumButtons.forEach(button => {
+// Click events
+document.querySelectorAll(".drum").forEach(button => {
     button.addEventListener("click", function() {
         const key = this.dataset.key;
         playSound(key);
